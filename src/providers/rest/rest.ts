@@ -13,12 +13,18 @@ import { Product } from '../../assets/models/product';
 
 export  class  RestProvider {
 
-baseUrl:string = "http://localhost:3000";
+baseUrl: string;
 
 constructor(private  httpClient : HttpClient) { }
 
+set_baseUrl(new_baseUrl: string) {
+	this.baseUrl = new_baseUrl;
+}
 
-// Sending a GET request to /products
+
+/*--------------------------------------------------------------*/
+/*------------Envoie une requête get à baseUrl/product----------*/
+/*--------------------------------------------------------------*/
 public getProducts(): Observable<Product[]> {
 	return this.httpClient.get(this.baseUrl + '/products')
 		.map(products => {
@@ -32,7 +38,9 @@ public getProducts(): Observable<Product[]> {
 
 
 
-// Sending a POST request to /products
+/*--------------------------------------------------------------*/
+/*------------Envoie une requête post à baseUrl/product---------*/
+/*--------------------------------------------------------------*/
 public createProduct(product: Product): Observable<Product> {
 	return this.httpClient.post(this.baseUrl + '/products', product)
 		.map(response => {
@@ -46,7 +54,9 @@ public createProduct(product: Product): Observable<Product> {
 
 
 
-// Sending a GET request to /products/:id
+/*-----------------------------------------------------------------------*/
+/*------------Envoie une requête get à baseUrl/product/productId---------*/
+/*-----------------------------------------------------------------------*/
 public getProductById(productId: number): Observable<Product> {
 	return this.httpClient.get(this.baseUrl + '/products/' + productId)
 		.map(response => {
@@ -60,7 +70,9 @@ public getProductById(productId: number): Observable<Product> {
 
 
 
-// Sending a PUT request to /products/:id
+/*-----------------------------------------------------------------------*/
+/*------------Envoie une requête put à baseUrl/product/productId---------*/
+/*-----------------------------------------------------------------------*/
 public updateProduct(product: Product): Observable<Product> {
 	return  this.httpClient.put(this.baseUrl + '/products/' + product.id, product)
 		.map(response => {
@@ -72,7 +84,11 @@ public updateProduct(product: Product): Observable<Product> {
 	;
 }
 
-// Sending a DELETE request to /products/:id
+
+
+/*--------------------------------------------------------------------------*/
+/*------------Envoie une requête delete à baseUrl/product/productId---------*/
+/*--------------------------------------------------------------------------*/
 public deleteProductById(productId: number) {
 	return this.httpClient.delete(this.baseUrl+ '/products/' + productId)
 		.catch(err => {

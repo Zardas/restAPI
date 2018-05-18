@@ -16,19 +16,20 @@
   	<button ion-button (click)="createProduct({id: 7, name: 'Product007',	cost: 77.7,	quantity: 7777,	locationId : 1,	familyId : 1})">7</button>
   </div>
 
- <div id="ligneButtons">
+  <div id="ligneButtons">
   	<button ion-button color="light" (click)="updateProduct({id: 4, name: 'Product004',	cost: 100.0,	quantity: 1000,	locationId : 1,	familyId : 1})">4</button>
   	<button ion-button color="light" (click)="updateProduct({id: 5, name: 'Product005',	cost: 1.0,	quantity: 3,	locationId : 1,	familyId : 1})">5</button>
   	<button ion-button color="light" (click)="updateProduct({id: 6, name: 'Product006',	cost: 130,	quantity: 1222,	locationId : 1,	familyId : 1})">6</button>
   	<button ion-button color="light" (click)="updateProduct({id: 7, name: 'Product007',	cost: 66.6,	quantity: 7777,	locationId : 1,	familyId : 1})">7</button>
   </div>
 
- <div id="ligneButtons">
+  <div id="ligneButtons">
   	<button ion-button color="danger" (click)="removeProduct({id: 4, name: 'Product004',	cost: 10.0,	quantity: 1000,	locationId : 1,	familyId : 1})">4</button>
   	<button ion-button color="danger" (click)="removeProduct({id: 5, name: 'Product005',	cost: 100000.0,	quantity: 3,	locationId : 1,	familyId : 1})">5</button>
   	<button ion-button color="danger" (click)="removeProduct({id: 6, name: 'Product006',	cost: 11.0,	quantity: 1222,	locationId : 1,	familyId : 1})">6</button>
   	<button ion-button color="danger" (click)="removeProduct({id: 7, name: 'Product007',	cost: 77.7,	quantity: 7777,	locationId : 1,	familyId : 1})">7</button>
   </div>
+
  <ion-item *ngFor="let product of products">
  	<p>{{product.id}}</p>
  	<h2>{{product.name}} : {{product.cost}}</h2>
