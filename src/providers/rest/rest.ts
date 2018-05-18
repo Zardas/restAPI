@@ -7,7 +7,6 @@ import { Observable } from  'rxjs/Observable';
 import  'rxjs/add/operator/catch';
 import  'rxjs/add/operator/map';
 
-import { Product } from '../../assets/models/product';
 
 @Injectable()
 
@@ -25,18 +24,18 @@ set_baseUrl(new_baseUrl: string) {
 /*--------------------------------------------------------------*/
 /*------------Envoie une requête get à baseUrl/product----------*/
 /*--------------------------------------------------------------*/
-//Retourne un Observable<Product[]> dans le cas normal
-public getProducts(): Observable<any> {
-	return this.httpClient.get(this.baseUrl + '/products')
-		.map(products => {
-			if(products instanceof Array) {
-				return products.map((product) => new Product(product));
+//Retourne un Observable<any[]> dans le cas normal
+public getData(champ: string): Observable<any> {
+	return this.httpClient.get(this.baseUrl + '/' + champ)
+		.map(data => {
+			if(data instanceof Array) {
+				return data.map((dataElem) => dataElem);
 			} else {
-				return new Product(products);
+				return data;
 			}
 		})
 		.catch(err => {
-			console.error("Erreur getProducts au niveau du provider : " + err);
+			console.error("Erreur getData au niveau du provider : " + err);
 			return err;
 		})
 	;
@@ -47,13 +46,13 @@ public getProducts(): Observable<any> {
 /*--------------------------------------------------------------*/
 /*------------Envoie une requête post à baseUrl/product---------*/
 /*--------------------------------------------------------------*/
-public createProduct(product: Product): Observable<any> {
-	return this.httpClient.post(this.baseUrl + '/products', product)
+public createData(champ: string, data: any): Observable<any> {
+	return this.httpClient.post(this.baseUrl + '/' + champ, data)
 		.map(response => {
-			return new Product(response);
+			return response;
 		})
 		.catch(err => {
-			console.error("Erreur createProduct au niveau du provider : " + err);
+			console.error("Erreur createData au niveau du provider : " + err);
 			return err;
 		})
 	;
@@ -64,13 +63,13 @@ public createProduct(product: Product): Observable<any> {
 /*-----------------------------------------------------------------------*/
 /*------------Envoie une requête get à baseUrl/product/productId---------*/
 /*-----------------------------------------------------------------------*/
-public getProductById(productId: number): Observable<any> {
-	return this.httpClient.get(this.baseUrl + '/products/' + productId)
+public getDataById(champ: string, id: number): Observable<any> {
+	return this.httpClient.get(this.baseUrl + '/' + champ + '/' + id)
 		.map(response => {
-			return new Product(response);
+			return (response);
 		})
 		.catch(err => {
-			console.error("Erreur getProductById au niveau du provider : " + err);
+			console.error("Erreur getDataById au niveau du provider : " + err);
 			return err;
 		})
 	;
@@ -81,13 +80,13 @@ public getProductById(productId: number): Observable<any> {
 /*-----------------------------------------------------------------------*/
 /*------------Envoie une requête put à baseUrl/product/productId---------*/
 /*-----------------------------------------------------------------------*/
-public updateProduct(product: Product): Observable<any> {
-	return  this.httpClient.put(this.baseUrl + '/products/' + product.id, product)
+public updateData(champ: string, data: any): Observable<any> {
+	return  this.httpClient.put(this.baseUrl + '/' + champ + '/' + data.id, data)
 		.map(response => {
-			return new Product(response);
+			return response;
 		})
 		.catch(err => {
-			console.error("Erreur updateProduct au niveau du provider " + err);
+			console.error("Erreur updateData au niveau du provider " + err);
 			return err;
 		})
 	;
@@ -98,10 +97,10 @@ public updateProduct(product: Product): Observable<any> {
 /*--------------------------------------------------------------------------*/
 /*------------Envoie une requête delete à baseUrl/product/productId---------*/
 /*--------------------------------------------------------------------------*/
-public deleteProductById(productId: number): Observable<any> {
-	return this.httpClient.delete(this.baseUrl+ '/products/' + productId)
+public deleteDataById(champ: string, id: number): Observable<any> {
+	return this.httpClient.delete(this.baseUrl+ '/' + champ + '/' + id)
 		.catch(err => {
-			console.error("Erreur deleteProductById au niveau du provider " + err);
+			console.error("Erreur deleteDataById au niveau du provider " + err);
 			return err;
 		})
 	;

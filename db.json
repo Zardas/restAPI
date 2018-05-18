@@ -23,6 +23,60 @@
       "quantity": 20,
       "locationId": 1,
       "familyId": 1
+    },
+    {
+      "id": 4,
+      "name": "Product004",
+      "cost": 10,
+      "quantity": 1000,
+      "locationId": 1,
+      "familyId": 1
+    },
+    {
+      "id": 5,
+      "name": "Product005",
+      "cost": 1,
+      "quantity": 3,
+      "locationId": 1,
+      "familyId": 1
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Brontes",
+      "age": 320,
+      "specialite": "Engin Phoebis"
+    },
+    {
+      "id": 2,
+      "name": "Tyrans",
+      "age": 351,
+      "specialite": "Strategie"
+    },
+    {
+      "id": 3,
+      "name": "Styrak",
+      "age": 331,
+      "specialite": "Alchimie"
+    },
+    {
+      "id": 4,
+      "name": "Calyphus",
+      "age": 318,
+      "specialite": "Prophécies"
+    },
+    {
+      "id": 5,
+      "name": "Bestia",
+      "age": 308,
+      "specialite": "Graines de rage"
+    },
+    {
+      "id": 6,
+      "name": "Raptus",
+      "age": 342,
+      "specialite": ""
     }
   ]
 }
