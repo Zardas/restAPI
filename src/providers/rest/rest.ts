@@ -25,13 +25,19 @@ set_baseUrl(new_baseUrl: string) {
 /*--------------------------------------------------------------*/
 /*------------Envoie une requête get à baseUrl/product----------*/
 /*--------------------------------------------------------------*/
-public getProducts(): Observable<Product[]> {
+//Retourne un Observable<Product[]> dans le cas normal
+public getProducts(): Observable<any> {
 	return this.httpClient.get(this.baseUrl + '/products')
 		.map(products => {
-			return  products.map((product) => new Product(product));
+			if(products instanceof Array) {
+				return products.map((product) => new Product(product));
+			} else {
+				return new Product(products);
+			}
 		})
 		.catch(err => {
 			console.error("Erreur getProducts au niveau du provider : " + err);
+			return err;
 		})
 	;
 }
@@ -41,13 +47,14 @@ public getProducts(): Observable<Product[]> {
 /*--------------------------------------------------------------*/
 /*------------Envoie une requête post à baseUrl/product---------*/
 /*--------------------------------------------------------------*/
-public createProduct(product: Product): Observable<Product> {
+public createProduct(product: Product): Observable<any> {
 	return this.httpClient.post(this.baseUrl + '/products', product)
 		.map(response => {
 			return new Product(response);
 		})
 		.catch(err => {
 			console.error("Erreur createProduct au niveau du provider : " + err);
+			return err;
 		})
 	;
 }
@@ -57,13 +64,14 @@ public createProduct(product: Product): Observable<Product> {
 /*-----------------------------------------------------------------------*/
 /*------------Envoie une requête get à baseUrl/product/productId---------*/
 /*-----------------------------------------------------------------------*/
-public getProductById(productId: number): Observable<Product> {
+public getProductById(productId: number): Observable<any> {
 	return this.httpClient.get(this.baseUrl + '/products/' + productId)
 		.map(response => {
 			return new Product(response);
 		})
 		.catch(err => {
 			console.error("Erreur getProductById au niveau du provider : " + err);
+			return err;
 		})
 	;
 }
@@ -73,13 +81,14 @@ public getProductById(productId: number): Observable<Product> {
 /*-----------------------------------------------------------------------*/
 /*------------Envoie une requête put à baseUrl/product/productId---------*/
 /*-----------------------------------------------------------------------*/
-public updateProduct(product: Product): Observable<Product> {
+public updateProduct(product: Product): Observable<any> {
 	return  this.httpClient.put(this.baseUrl + '/products/' + product.id, product)
 		.map(response => {
 			return new Product(response);
 		})
 		.catch(err => {
 			console.error("Erreur updateProduct au niveau du provider " + err);
+			return err;
 		})
 	;
 }
@@ -89,10 +98,11 @@ public updateProduct(product: Product): Observable<Product> {
 /*--------------------------------------------------------------------------*/
 /*------------Envoie une requête delete à baseUrl/product/productId---------*/
 /*--------------------------------------------------------------------------*/
-public deleteProductById(productId: number) {
+public deleteProductById(productId: number): Observable<any> {
 	return this.httpClient.delete(this.baseUrl+ '/products/' + productId)
 		.catch(err => {
 			console.error("Erreur deleteProductById au niveau du provider " + err);
+			return err;
 		})
 	;
 }
